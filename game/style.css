@@ -1,0 +1,318 @@
+/* style.css — Duel Lapak Pasar Malam. Semua aset inline (CSS + Unicode),
+   tanpa font eksternal, tanpa network. Teks kartu >= 12px, headline 30px+. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #1a0f2e;
+  color: #f5efe0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 183, 77, 0.18), transparent 55%),
+    radial-gradient(circle at 85% 10%, rgba(229, 57, 53, 0.16), transparent 50%),
+    #1a0f2e;
+  min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Layar judul & akhir ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 8, 32, 0.92);
+  padding: 24px;
+}
+
+.title-box {
+  max-width: 760px;
+  text-align: center;
+  background: #2a1845;
+  border: 3px solid #ffb74d;
+  border-radius: 20px;
+  padding: 36px 40px;
+  box-shadow: 0 0 60px rgba(255, 183, 77, 0.35);
+}
+
+.game-title {
+  font-size: 44px;
+  line-height: 1.1;
+  margin: 0 0 8px;
+  color: #ffb74d;
+  text-shadow: 0 3px 0 #7a3c00;
+}
+
+.game-thesis {
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 0 0 20px;
+  color: #ffe0b2;
+}
+
+.howto {
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 auto 24px;
+  max-width: 560px;
+  color: #e8e0f0;
+}
+
+.howto li { margin-bottom: 6px; }
+
+.big-btn {
+  font-size: 22px;
+  font-weight: 800;
+  padding: 14px 34px;
+  border-radius: 12px;
+  border: 3px solid #ff8f00;
+  background: linear-gradient(#ffb74d, #ff9800);
+  color: #2a1500;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #7a3c00;
+}
+
+.big-btn:hover { filter: brightness(1.08); }
+.big-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #7a3c00; }
+.big-btn:disabled { opacity: 0.45; cursor: default; }
+
+.end-headline {
+  font-size: 52px;
+  margin: 0 0 10px;
+}
+.end-headline.win { color: #69f0ae; }
+.end-headline.lose { color: #ff8a80; }
+
+.end-sub { font-size: 19px; margin: 0 0 12px; color: #ffe0b2; }
+.end-stats { font-size: 16px; margin: 0 0 24px; color: #cfc4de; }
+
+/* ---------- Layar game ---------- */
+#game-screen {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px 14px 10px;
+  display: flex;
+  gap: 14px;
+}
+
+#main-col { flex: 1; min-width: 0; }
+
+/* HUD */
+#hud {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  background: #2a1845;
+  border: 2px solid #6d4c9e;
+  border-radius: 12px;
+  padding: 8px 14px;
+  margin-bottom: 8px;
+}
+
+.hud-title { font-size: 20px; font-weight: 800; color: #ffb74d; letter-spacing: 0.5px; }
+.hud-sub { font-size: 14px; color: #cfc4de; margin-top: 2px; }
+
+.hud-mid { flex: 1; max-width: 460px; }
+.hp-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+.hp-name { font-size: 12px; font-weight: 700; width: 130px; text-align: right; color: #e8e0f0; }
+.hp-bar {
+  flex: 1;
+  height: 16px;
+  background: #12081f;
+  border: 1px solid #6d4c9e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.hp-fill { height: 100%; background: linear-gradient(90deg, #66bb6a, #43a047); transition: width 0.4s; }
+.hp-num { font-size: 13px; font-weight: 700; width: 74px; color: #fff; }
+
+.hud-right { text-align: right; }
+.coins { font-size: 19px; font-weight: 800; color: #ffd54f; }
+.deck-count { font-size: 12px; color: #cfc4de; margin: 2px 0 6px; }
+
+.mini-btn {
+  font-size: 13px;
+  padding: 5px 10px;
+  margin-left: 4px;
+  border-radius: 8px;
+  border: 1px solid #8d6fb8;
+  background: #3d2560;
+  color: #f5efe0;
+  cursor: pointer;
+}
+.mini-btn:hover { background: #4d2f78; }
+
+/* Tangan */
+.hand-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffe0b2;
+  margin: 4px 2px;
+}
+.hand-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 148px;
+  align-items: flex-start;
+}
+.hand-row-small { min-height: 108px; }
+.hand-empty { font-size: 14px; color: #9d8fb8; padding: 12px; }
+
+/* Papan: 3 lapak */
+#board { display: flex; flex-direction: column; gap: 6px; margin: 2px 0; }
+
+.lane {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(42, 24, 69, 0.75);
+  border: 2px solid #4d2f78;
+  border-radius: 12px;
+  padding: 4px 10px;
+}
+.lane.droppable { border-color: #ffb74d; box-shadow: 0 0 0 2px rgba(255, 183, 77, 0.5); }
+
+.lane-label {
+  width: 92px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffb74d;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.lane-row {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  min-height: 108px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 2px;
+}
+.lane-row-ai { background: rgba(198, 40, 40, 0.10); }
+.lane-row-player { background: rgba(102, 187, 106, 0.10); }
+.lane-row-player:hover { background: rgba(102, 187, 106, 0.18); }
+
+.lane-vs { font-size: 22px; color: #ffb74d; }
+
+.slot-empty {
+  width: 88px;
+  height: 104px;
+  border: 2px dashed #5b4480;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6d5b8a;
+  font-size: 20px;
+}
+
+/* Kartu */
+.card {
+  position: relative;
+  width: 104px;
+  height: 144px;
+  flex: 0 0 auto;
+  background: var(--suit-bg, #fff);
+  border: 3px solid var(--suit-color, #333);
+  border-radius: 12px;
+  color: #1c1030;
+  padding: 8px 7px 6px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.card:hover { transform: translateY(-4px); }
+
+.card-small { width: 88px; height: 104px; padding: 4px 4px 3px; }
+.card-small .card-suit { font-size: 22px; }
+.card-small .card-suit-label { display: none; }
+.card-small .card-name { font-size: 11px; min-height: 24px; line-height: 1.15; margin-top: 2px; }
+.card-small .card-text { display: none; }
+.card-small .card-stats { font-size: 11px; }
+.card-small .card-cost { width: 22px; height: 22px; font-size: 13px; line-height: 20px; top: -7px; left: -7px; }
+
+.card.selected {
+  transform: translateY(-8px);
+  box-shadow: 0 0 0 3px #ffb74d, 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+.card.unaffordable { opacity: 0.55; }
+
+.card-cost {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffd54f;
+  border: 2px solid #7a5c00;
+  color: #3e2800;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 28px;
+}
+
+.card-suit { font-size: 30px; line-height: 1; color: var(--suit-color, #333); }
+.card-suit-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--suit-color, #333); }
+.card-name { font-size: 12px; font-weight: 800; line-height: 1.25; margin-top: 4px; min-height: 30px; }
+.card-text { font-size: 11px; line-height: 1.3; color: #4a3a63; margin-top: 2px; min-height: 26px; }
+.card-stats {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 800;
+}
+.card-stats span { white-space: nowrap; }
+.stat-atk { color: #b71c1c; }
+.stat-hp { color: #1b5e20; }
+
+.card-back {
+  background: repeating-linear-gradient(45deg, #7a3c00, #7a3c00 10px, #5d2e00 10px, #5d2e00 20px);
+  border-color: #ffb74d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+.card-back-inner { font-size: 26px; color: #ffd54f; letter-spacing: 2px; }
+.card-back-label { font-size: 12px; font-weight: 800; color: #ffe0b2; letter-spacing: 2px; margin-top: 6px; }
+.card-small.card-back .card-back-inner { font-size: 17px; letter-spacing: 1px; }
+.card-small.card-back .card-back-label { font-size: 10px; margin-top: 4px; }
+
+/* Kontrol + log */
+#controls { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
+.controls-hint { font-size: 13px; color: #cfc4de; line-height: 1.4; }
+
+#log {
+  width: 250px;
+  flex: 0 0 250px;
+  background: #241239;
+  border: 2px solid #4d2f78;
+  border-radius: 12px;
+  padding: 10px 12px;
+  align-self: flex-start;
+  position: sticky;
+  top: 10px;
+}
+.log-title { font-size: 16px; font-weight: 800; color: #ffb74d; margin-bottom: 8px; }
+.log-line { font-size: 13px; line-height: 1.45; color: #e8e0f0; padding: 3px 0; border-bottom: 1px solid #3a2360; }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duel Lapak Pasar Malam — Duel Kartu 3 Lapak</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8E%AA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Layar judul -->
+<div id="title-screen" class="overlay">
+  <div class="title-box">
+    <h1 class="game-title">DUEL LAPAK<br>PASAR MALAM</h1>
+    <p class="game-thesis">Duel kartu 3 lapak di pasar malam: mainkan kartu pedagang untuk menyerang lapak lawan, HP 20 vs 20, pertama habis kalah.</p>
+    <ul class="howto">
+      <li><b>Tujuan:</b> habiskan HP Bang Jarwo (20) sebelum HP-mu habis.</li>
+      <li><b>Tiap ronde:</b> dapat koin (naik tiap ronde, maks 8) dan tarik 1 kartu.</li>
+      <li><b>Main kartu:</b> klik kartu di tanganmu, lalu klik salah satu dari 3 lapak (Lapak Sate, Lapak Es, Lapak Batik). Harga kartu = koin di pojok kiri atas kartu.</li>
+      <li><b>Serang:</b> tekan “Akhiri Giliran”. Kartu di tiap lapak menghantam kartu depan lawan; kalau lapak lawan kosong, HP lawan langsung kena.</li>
+      <li><b>Suit = dagangan:</b> ♠ Makanan, ♥ Minuman, ♦ Kerajinan, ♣ Pakaian. Beberapa kartu punya efek: pulihkan HP, tarik kartu, tambah koin, hantam semua lawan di lapak, atau perisai +HP.</li>
+      <li><b>AI:</b> Bang Jarwo main terbuka — ia membunuh kartumu yang lemah, menyerang lewat lapak kosong, dan memakai efek saat berguna. Baca langkahnya, lalu lawan!</li>
+    </ul>
+    <button class="big-btn" data-action="start">🎪 MULAI DUEL</button>
+  </div>
+</div>
+
+<!-- Layar menang / kalah -->
+<div id="end-screen" class="overlay hidden">
+  <div class="title-box">
+    <h1 id="end-headline" class="end-headline win">MENANG! 🏆</h1>
+    <p id="end-sub" class="end-sub"></p>
+    <p id="end-stats" class="end-stats"></p>
+    <button class="big-btn" data-action="restart">↻ MAIN LAGI</button>
+  </div>
+</div>
+
+<!-- Layar game -->
+<div id="game-screen" class="hidden">
+  <div id="main-col">
+    <div id="hud"></div>
+    <div id="ai-hand"></div>
+    <div id="board"></div>
+    <div id="player-hand"></div>
+    <div id="controls"></div>
+  </div>
+  <aside id="log"></aside>
+</div>
+
+<script src="cards.js"></script>
+<script src="ai.js"></script>
+<script src="audio.js"></script>
+<script src="render.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
