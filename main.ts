@@ -5,14 +5,19 @@
 //   MAKEFUN_OUTPUT_DIR=/tmp/out node main.ts
 
 import { buildDossier } from './vendor/makefun-game.ts';
-import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-rmSync(out, { recursive: true, force: true });
+// Never remove the output dir itself: on the grader /output is a mounted
+// volume and removing a mount point fails EBUSY. Clear its contents only.
+mkdirSync(out, { recursive: true });
+for (const entry of readdirSync(out)) {
+  rmSync(join(out, entry), { recursive: true, force: true });
+}
 mkdirSync(join(out, 'game'), { recursive: true });
 mkdirSync(join(out, 'screenshots'), { recursive: true });
 cpSync(join(root, 'game'), join(out, 'game'), { recursive: true });
